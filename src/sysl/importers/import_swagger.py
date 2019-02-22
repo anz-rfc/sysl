@@ -96,10 +96,11 @@ def make_default_logger():
 
 
 def load_vocabulary(words_fn='/usr/share/dict/words'):
-    if not os.path.exists(words_fn):
+    try:
+        f = open(words_fn)
+        return (w.strip() for w in f)
+    except IOError:
         return []
-    else:
-        return (w.strip() for w in open(words_fn))
 
 
 class SwaggerTranslator:
