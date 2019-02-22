@@ -142,7 +142,6 @@ class SwaggerTranslator:
             ident = ident.replace('}', '<:string}')
 
             self._param_cache[param] = ident
-
         return ident
 
     def translate_path_template_params(self, path):
@@ -152,7 +151,6 @@ class SwaggerTranslator:
         return re.sub(r'({[^/]*?})', self.javaParam, path)
 
     def translate(self, swag, appname, package, w):
-
         if 'info' in swag:
             def info_attrs(info, prefix=''):
                 for (name, value) in sorted(info.iteritems()):
@@ -283,7 +281,6 @@ class SwaggerTranslator:
                         assert True, tspec
 
     def parse_typespec(self, tspec):
-
         typ = tspec.get('type')
 
         # skip invalid arrays
