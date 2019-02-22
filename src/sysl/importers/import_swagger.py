@@ -88,6 +88,10 @@ def parse_args(argv):
 def make_default_logger():
     logger = logging.getLogger('import_swagger')
     logger.setLevel(logging.WARN)
+    handler = logging.StreamHandler(sys.stderr)
+    formatter = logging.Formatter('[%(levelname)s] %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
     return logger
 
 
