@@ -178,13 +178,12 @@ class SwaggerTranslator:
                 with w.indent():
                     if 'parameters' in api:
                         del api['parameters']
-                    for (i, (method, body)) in enumerate(sorted(api.iteritems(),
-                                                                key=lambda t: METHOD_ORDER[t[0]])):
-                        qparams = dict()
+                    sorted_methods = sorted(api.iteritems(), key=lambda t: METHOD_ORDER[t[0]])
+                    for (i, (method, body)) in enumerate(sorted_methods):
+                        qparams = []
 
                         if 'parameters' in body:
-                            qparams = [p for p in body['parameters']
-                                       if p.get('in') == 'query']
+                            qparams = [p for p in body['parameters'] if p.get('in') == 'query']
 
                         w(u'{}{}{}:',
                           method.upper(),
